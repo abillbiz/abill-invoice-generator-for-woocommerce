@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Composer
+vendor/
+
+# Logs
+*.log
+
+# Archives
+*.zip
+
+# Temporary
+tmp/
+temp/
+
+# Node
+node_modules/
+
+# PHPUnit
+phpunit.xml
+coverage/
+
+# SVN working copy
+svn-repo/
+
+# Backup files
+*.bak
+*.old
