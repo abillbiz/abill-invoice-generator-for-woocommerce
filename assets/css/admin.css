@@ -1,0 +1,355 @@
+/**
+ * ABill Invoice Generator admin interface.
+ */
+
+:root {
+	--abiwig-primary: #1f3a5f;
+	--abiwig-primary-hover: #162b48;
+	--abiwig-accent: #f59e0b;
+	--abiwig-border: #dcdcde;
+	--abiwig-border-soft: #e8eaed;
+	--abiwig-surface: #ffffff;
+	--abiwig-surface-soft: #f6f7f7;
+	--abiwig-text: #1d2327;
+	--abiwig-muted: #646970;
+	--abiwig-danger: #b32d2e;
+	--abiwig-success: #008a20;
+	--abiwig-radius: 10px;
+	--abiwig-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(31, 58, 95, 0.06);
+}
+
+.abiwig-admin-wrap {
+	max-width: 1440px;
+}
+
+.abiwig-admin-wrap > h1,
+.abiwig-admin-wrap > .wp-heading-inline {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.abiwig-admin-wrap > h1::before,
+.abiwig-admin-wrap > .wp-heading-inline::before {
+	width: 78px;
+	height: 24px;
+	content: "";
+	background: url("../images/abill-logo.png") center / contain no-repeat;
+}
+
+.abiwig-admin-wrap .page-title-action {
+	border-radius: 6px;
+}
+
+.abiwig-create-card,
+.abiwig-panel {
+	box-sizing: border-box;
+	padding: 22px;
+	border: 1px solid var(--abiwig-border-soft);
+	border-radius: var(--abiwig-radius);
+	background: var(--abiwig-surface);
+	box-shadow: var(--abiwig-shadow);
+}
+
+.abiwig-create-card {
+	margin: 20px 0;
+	border-left: 4px solid var(--abiwig-accent);
+}
+
+.abiwig-create-card h2,
+.abiwig-panel h2 {
+	margin-top: 0;
+	color: var(--abiwig-primary);
+}
+
+.abiwig-create-card form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+}
+
+.abiwig-create-card input[type="number"] {
+	min-width: 220px;
+	min-height: 36px;
+}
+
+.abiwig-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	margin: 18px 0 12px;
+}
+
+.abiwig-filters select,
+.abiwig-filters input[type="search"] {
+	min-height: 34px;
+}
+
+.abiwig-filters input[type="search"] {
+	min-width: 260px;
+}
+
+.abiwig-grid {
+	display: grid;
+	gap: 20px;
+	margin: 20px 0;
+}
+
+.abiwig-grid-2 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.abiwig-grid-3 {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.abiwig-panel label {
+	font-weight: 600;
+	color: var(--abiwig-text);
+}
+
+.abiwig-panel input[type="text"],
+.abiwig-panel input[type="email"],
+.abiwig-panel input[type="number"],
+.abiwig-panel input[type="date"],
+.abiwig-panel select,
+.abiwig-panel textarea,
+.abiwig-invoice-form input[type="text"],
+.abiwig-invoice-form input[type="email"],
+.abiwig-invoice-form input[type="number"],
+.abiwig-invoice-form input[type="date"],
+.abiwig-invoice-form select,
+.abiwig-invoice-form textarea {
+	box-sizing: border-box;
+	max-width: 100%;
+	border-color: #c7ccd1;
+	border-radius: 6px;
+}
+
+.abiwig-panel input:focus,
+.abiwig-panel select:focus,
+.abiwig-panel textarea:focus,
+.abiwig-invoice-form input:focus,
+.abiwig-invoice-form select:focus,
+.abiwig-invoice-form textarea:focus {
+	border-color: var(--abiwig-primary);
+	box-shadow: 0 0 0 1px var(--abiwig-primary);
+}
+
+.abiwig-invoice-form > .abiwig-panel {
+	margin: 20px 0;
+}
+
+.abiwig-invoice-table {
+	border: 1px solid var(--abiwig-border);
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+	overflow: hidden;
+}
+
+.abiwig-invoice-table th {
+	font-weight: 700;
+	color: var(--abiwig-primary);
+	background: #f4f6f8;
+}
+
+.abiwig-invoice-table td,
+.abiwig-invoice-table th {
+	vertical-align: middle;
+}
+
+.abiwig-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	align-items: center;
+}
+
+.abiwig-inline-form {
+	display: inline-flex;
+	margin: 0;
+}
+
+.abiwig-status {
+	display: inline-flex;
+	align-items: center;
+	min-height: 24px;
+	padding: 2px 9px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1.4;
+	text-transform: capitalize;
+}
+
+.abiwig-status-draft {
+	color: #50575e;
+	background: #e8eaed;
+}
+
+.abiwig-status-sent {
+	color: #0a4b78;
+	background: #dceeff;
+}
+
+.abiwig-status-paid {
+	color: #006b1b;
+	background: #d9f4df;
+}
+
+.abiwig-status-cancelled {
+	color: #8a2424;
+	background: #fce1e1;
+}
+
+.abiwig-items-table {
+	table-layout: fixed;
+	margin-top: 14px;
+}
+
+.abiwig-items-table th:nth-child(1) { width: 27%; }
+.abiwig-items-table th:nth-child(2) { width: 13%; }
+.abiwig-items-table th:nth-child(3) { width: 9%; }
+.abiwig-items-table th:nth-child(4),
+.abiwig-items-table th:nth-child(5),
+.abiwig-items-table th:nth-child(6) { width: 14%; }
+.abiwig-items-table th:nth-child(7) { width: 9%; }
+
+.abiwig-items-table input[type="text"],
+.abiwig-items-table input[type="number"] {
+	width: 100%;
+	min-width: 0;
+}
+
+.abiwig-items-table tr.abiwig-row-removed {
+	opacity: 0.45;
+	background: #fff1f1;
+}
+
+.abiwig-item-tools {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+	margin-top: 12px;
+}
+
+.abiwig-recalculated-message {
+	color: var(--abiwig-success);
+	font-weight: 600;
+}
+
+.abiwig-logo-field {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+}
+
+.abiwig-logo-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 160px;
+	height: 72px;
+	padding: 8px;
+	border: 1px dashed #a7aaad;
+	border-radius: 8px;
+	background: #fff;
+}
+
+.abiwig-logo-preview img {
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
+
+.abiwig-logo-preview.is-empty::before {
+	content: attr(data-empty-label);
+	color: var(--abiwig-muted);
+	font-size: 12px;
+}
+
+.abiwig-admin-wrap .button-primary,
+.abiwig-admin-wrap .button.button-primary {
+	border-color: var(--abiwig-primary);
+	background: var(--abiwig-primary);
+}
+
+.abiwig-admin-wrap .button-primary:hover,
+.abiwig-admin-wrap .button-primary:focus,
+.abiwig-admin-wrap .button.button-primary:hover,
+.abiwig-admin-wrap .button.button-primary:focus {
+	border-color: var(--abiwig-primary-hover);
+	background: var(--abiwig-primary-hover);
+}
+
+.abiwig-admin-wrap .button-link-delete {
+	color: var(--abiwig-danger);
+}
+
+.abiwig-view-actions {
+	align-items: start;
+}
+
+.abiwig-view-actions .abiwig-panel {
+	height: 100%;
+}
+
+.abiwig-admin-wrap .notice {
+	margin-left: 0;
+}
+
+@media screen and (max-width: 1180px) {
+	.abiwig-grid-3 {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.abiwig-grid-3 > :first-child {
+		grid-column: 1 / -1;
+	}
+}
+
+@media screen and (max-width: 782px) {
+	.abiwig-admin-wrap > h1::before,
+	.abiwig-admin-wrap > .wp-heading-inline::before {
+		display: none;
+	}
+
+	.abiwig-grid-2,
+	.abiwig-grid-3 {
+		grid-template-columns: 1fr;
+	}
+
+	.abiwig-grid-3 > :first-child {
+		grid-column: auto;
+	}
+
+	.abiwig-create-card form,
+	.abiwig-filters {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.abiwig-create-card input[type="number"],
+	.abiwig-filters input[type="search"],
+	.abiwig-filters select {
+		width: 100%;
+		min-width: 0;
+		max-width: none;
+	}
+
+	.abiwig-invoice-table,
+	.abiwig-items-table {
+		display: block;
+		overflow-x: auto;
+		white-space: nowrap;
+	}
+
+	.abiwig-actions {
+		min-width: 260px;
+	}
+}

@@ -1,0 +1,222 @@
+/**
+ * Standalone ABill invoice print styles.
+ */
+
+@page {
+	size: A4;
+	margin: 14mm;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: #eef1f4;
+	color: #17212b;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.abiwig-print-toolbar {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	padding: 16px;
+}
+
+.abiwig-print-toolbar button {
+	padding: 9px 18px;
+	border: 1px solid #1f3a5f;
+	border-radius: 6px;
+	background: #1f3a5f;
+	color: #fff;
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.abiwig-print-invoice {
+	width: 210mm;
+	min-height: 297mm;
+	margin: 18px auto;
+	padding: 18mm;
+	background: #fff;
+	box-shadow: 0 10px 38px rgba(0, 0, 0, 0.12);
+}
+
+.abiwig-print-header {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 76mm;
+	gap: 16mm;
+	align-items: start;
+	padding-bottom: 10mm;
+	border-bottom: 1.2mm solid #1f3a5f;
+}
+
+.abiwig-print-header h1 {
+	margin: 0 0 3mm;
+	font-size: 24px;
+	line-height: 1.2;
+	color: #1f3a5f;
+}
+
+.abiwig-print-logo {
+	display: block;
+	max-width: 58mm;
+	max-height: 25mm;
+	margin: 0 0 5mm;
+	object-fit: contain;
+	object-position: left center;
+}
+
+.abiwig-print-meta {
+	padding: 7mm;
+	border-radius: 3mm;
+	background: #f3f6f9;
+	text-align: right;
+}
+
+.abiwig-print-meta h2 {
+	margin: 0 0 4mm;
+	font-size: 22px;
+	letter-spacing: 0.08em;
+	color: #1f3a5f;
+}
+
+.abiwig-print-customer {
+	width: 55%;
+	margin: 10mm 0;
+	padding: 5mm 6mm;
+	border-left: 1.2mm solid #f59e0b;
+	background: #fffaf0;
+}
+
+.abiwig-print-customer h3,
+.abiwig-print-invoice > section h3 {
+	margin: 0 0 3mm;
+	color: #1f3a5f;
+}
+
+.abiwig-print-items {
+	width: 100%;
+	border-collapse: collapse;
+	page-break-inside: auto;
+}
+
+.abiwig-print-items thead {
+	display: table-header-group;
+}
+
+.abiwig-print-items tr {
+	page-break-inside: avoid;
+	page-break-after: auto;
+}
+
+.abiwig-print-items th,
+.abiwig-print-items td {
+	padding: 3.5mm 3mm;
+	border-bottom: 0.3mm solid #dde2e7;
+	text-align: left;
+	vertical-align: top;
+}
+
+.abiwig-print-items th {
+	background: #1f3a5f;
+	color: #fff;
+	font-weight: 700;
+}
+
+.abiwig-print-items th:nth-child(n+3),
+.abiwig-print-items td:nth-child(n+3) {
+	text-align: right;
+}
+
+.abiwig-print-totals {
+	display: flex;
+	justify-content: flex-end;
+	margin: 8mm 0;
+	page-break-inside: avoid;
+}
+
+.abiwig-print-totals table {
+	width: 80mm;
+	border-collapse: collapse;
+}
+
+.abiwig-print-totals th,
+.abiwig-print-totals td {
+	padding: 2.5mm 3mm;
+	border-bottom: 0.3mm solid #dde2e7;
+}
+
+.abiwig-print-totals th {
+	text-align: left;
+}
+
+.abiwig-print-totals td {
+	text-align: right;
+}
+
+.abiwig-print-grand-total th,
+.abiwig-print-grand-total td {
+	padding-top: 4mm;
+	padding-bottom: 4mm;
+	border-top: 0.8mm solid #1f3a5f;
+	border-bottom: 0;
+	font-size: 16px;
+	color: #1f3a5f;
+}
+
+.abiwig-print-invoice > section:not(.abiwig-print-customer):not(.abiwig-print-totals) {
+	margin-top: 7mm;
+	padding-top: 5mm;
+	border-top: 0.3mm solid #dde2e7;
+	page-break-inside: avoid;
+}
+
+@media print {
+	html,
+	body {
+		background: #fff;
+	}
+
+	.abiwig-print-toolbar {
+		display: none !important;
+	}
+
+	.abiwig-print-invoice {
+		width: auto;
+		min-height: 0;
+		margin: 0;
+		padding: 0;
+		box-shadow: none;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.abiwig-print-invoice {
+		width: calc(100% - 24px);
+		min-height: 0;
+		margin: 12px;
+		padding: 28px;
+	}
+
+	.abiwig-print-header {
+		grid-template-columns: 1fr;
+		gap: 20px;
+	}
+
+	.abiwig-print-meta {
+		text-align: left;
+	}
+}
